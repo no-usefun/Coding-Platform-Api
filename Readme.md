@@ -6,12 +6,19 @@ Built using **Node.js + Express**, this API provides structured, cache-optimized
 
 ---
 
+## 🌐 Live API
+
+👉 https://cp-stats-api.onrender.com/
+
+---
+
 ## ✨ Features
 
 * 📊 LeetCode stats (solved count, difficulty breakdown, submissions, acceptance rate)
 * 🧠 CodeChef stats (rating, stars, problems solved, contests)
 * 🔥 Optional LeetCode heatmap (submission calendar)
-* ⚡ In-memory caching for faster responses
+* ⚡ In-memory caching with TTL
+* 🔁 Deduplicated concurrent requests
 * 🛡️ Rate limiting to prevent abuse
 * 🌐 Public API (CORS enabled)
 
@@ -22,7 +29,7 @@ Built using **Node.js + Express**, this API provides structured, cache-optimized
 * Node.js
 * Express.js
 * Axios
-* Cheerio (for scraping)
+* Cheerio (scraping)
 * express-rate-limit
 * Morgan
 
@@ -32,13 +39,19 @@ Built using **Node.js + Express**, this API provides structured, cache-optimized
 
 ### 🔹 LeetCode
 
-```
+```http
 GET /api/leetcode/:username
 ```
 
 **Query Params:**
 
 * `calendar=true` → include submission heatmap
+
+**Example:**
+
+```
+https://cp-stats-api.onrender.com/api/leetcode/Harsh636_
+```
 
 **Response:**
 
@@ -69,8 +82,14 @@ GET /api/leetcode/:username
 
 ### 🔹 CodeChef
 
-```
+```http
 GET /api/codechef/:username
+```
+
+**Example:**
+
+```
+https://cp-stats-api.onrender.com/api/codechef/no_usefun
 ```
 
 **Response:**
@@ -94,7 +113,8 @@ GET /api/codechef/:username
 
 * ⏱️ Cached responses (TTL-based)
 * 🔁 Deduplicated concurrent requests
-* 🚦 Rate limiting (per IP)
+* 🚦 Rate limiting per IP
+* 💤 Render free-tier cold start handling (health check endpoint)
 
 ---
 
@@ -103,8 +123,8 @@ GET /api/codechef/:username
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/cp-stats-api.git
-cd cp-stats-api
+git clone https://github.com/no-usefun/Coding-Platform-Api.git
+cd Coding-Platform-Api
 ```
 
 ### 2. Install dependencies
@@ -129,35 +149,34 @@ http://localhost:5000
 
 ## 🌍 Deployment
 
-This API can be deployed on:
+Currently deployed on **Render (free tier)**.
 
-* Render (free tier)
-* Koyeb
-* Railway (trial)
+⚠️ Note:
 
-Make sure to set:
-
-```
-PORT=your_port
-```
+* The service may go idle after inactivity (~10–15 min)
+* First request may take a few seconds (cold start)
 
 ---
 
 ## 📌 Notes
 
-* This API uses **unofficial public endpoints / scraping**, so responses may change if source platforms update their structure.
-* Designed for **portfolio and personal dashboard use**, not heavy production workloads.
+* Uses **unofficial APIs and scraping**, so data may change if platforms update their structure
+* Intended for **portfolio and personal use**, not high-scale production systems
 
 ---
 
 ## 🤝 Usage
 
 You are free to use this API in your own projects.
-If you do, consider giving credit ⭐
+
+If you do, consider:
+
+* giving credit ⭐
+* or linking back to this repository
 
 ---
 
 ## 📬 Author
 
-Harsh
-Built as part of a personal portfolio project.
+**Harsh**
+Built as part of a personal portfolio project
