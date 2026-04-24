@@ -16,6 +16,8 @@ export async function getLeetcode(username, includeCalendar = false) {
 
   const data = res.data;
 
+  const ranking = data.ranking;
+
   // 🔹 submissions
   const totalSub = data.matchedUserStats.totalSubmissionNum.find(
     (x) => x.difficulty === "All",
@@ -74,6 +76,7 @@ export async function getLeetcode(username, includeCalendar = false) {
         totalSubmissions,
         acceptedSubmissions,
         acceptanceRate,
+        ranking,
       },
 
       ...(includeCalendar && {
